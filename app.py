@@ -1,6 +1,7 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import keys
 import time
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 
 class TwitterBot:
@@ -13,6 +14,15 @@ class TwitterBot:
         bot = self.bot
         bot.get('https://twitter.com/')
         time.sleep(3)
+        email = bot.find_element_by_class_name('email-input')
+        password = bot.find_element_by_name('session[password]')
+        email.clear()
+        password.clear()
+        email.send_Keys(self.username)
+        password.send_Keys(self.password)
+        password.send_Keys(Keys.RETURN)
+        time.sleep(3)
 
 
-andrew = TwitterBot('')
+andrew = TwitterBot('username', 'password')
+andrew.login()
