@@ -18,11 +18,17 @@ class TwitterBot:
         password = bot.find_element_by_name('session[password]')
         email.clear()
         password.clear()
-        email.send_Keys(self.username)
-        password.send_Keys(self.password)
-        password.send_Keys(Keys.RETURN)
+        email.send_keys(self.username)
+        password.send_keys(self.password)
+        password.send_keys(Keys.RETURN)
         time.sleep(3)
+
+    def like_tweet(self, hashtag):
+        bot = self.bot
+        bot.get('https://twitter.com/hashtag/'+hashtag+'?src=rela')
+        bot.sleep(3)
 
 
 andrew = TwitterBot('username', 'password')
 andrew.login()
+andrew.like_tweet('webdevelopment')
