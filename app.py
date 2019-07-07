@@ -27,8 +27,12 @@ class TwitterBot:
         bot = self.bot
         bot.get('https://twitter.com/hashtag/'+hashtag+'?src=rela')
         bot.sleep(3)
+        for i in range(1, 3):
+            bot.execute_script('window.scrollTo(0,document.body.scrollHeight)')
+            time.sleep(2)
+            tweets = bot.find_elements_by_class_name('tweet')
 
 
-andrew = TwitterBot('username', 'password')
+andrew = TwitterBot('user', 'password')
 andrew.login()
 andrew.like_tweet('webdevelopment')
